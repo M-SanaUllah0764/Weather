@@ -61,7 +61,7 @@ const Weathercard = ({
 
         <div className="date"> {new Date().toLocaleString()} </div>
 
-        {/* our 4column section  */}
+        {/* our column section  */}
         <div className="extra-temp">
           <div className="temp-info-minmax">
             <div className="two-sided-section">
