@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import WeatherCard from "./WeatherCard";
 import "./style.css";
 
@@ -6,7 +6,7 @@ const Temp = () => {
   const [searchValue, setSearchValue] = useState("Lahore");
   const [tempInfo, setTempInfo] = useState({});
 
-  const getWeatherInfo = async () => {
+  const getWeatherInfo = useCallback(async () => {
     try {
       let url = `https://api.openweathermap.org/data/2.5/weather?q=${searchValue}&units=metric&appid=48ea5016b7de802699524b485c957bee`;
 
@@ -34,11 +34,11 @@ const Temp = () => {
     } catch (error) {
       console.log(error);
     }
-  };
+  }, [searchValue]); // Dependency: searchValue
 
   useEffect(() => {
     getWeatherInfo();
-  }, []);
+  }, [getWeatherInfo]); // Now includes getWeatherInfo
 
   return (
     <>
